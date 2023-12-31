@@ -69,7 +69,9 @@ public class SimpleOrderService extends OrderService{
         Message message = new Template2(order.getCustomerID(), messageID, language1, channel, customerModel.read(order.getCustomerID()).getUserName());
         notificationManager.insert(message);
     }
-
+    public String listOrders(Long customerID) {
+        return orderLog.list(customerID);
+    }
     public void cancel(String ID) {
         orderLog.delete(ID);
     }

@@ -1,6 +1,8 @@
 package com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.OrderModel;
 
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Order.CompoundOrder;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Order.Order;
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Order.SimpleOrder;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -20,6 +22,7 @@ public class OrderLog {
         System.out.print(order.getID());
         System.out.println();
     }
+
     public void delete(String ID){
         for(int i=0;i<orders.size();i++){
             if(Objects.equals(orders.elementAt(i).getID(), ID)) {
@@ -30,6 +33,7 @@ public class OrderLog {
         }
 
     }
+
     public Order read(String ID){
         for(int i=0;i<orders.size();i++){
             if(Objects.equals(orders.elementAt(i).getID(), ID)) {
@@ -38,4 +42,24 @@ public class OrderLog {
         }
         return null ;
     }
+
+    public String list(Long customerID){
+        String orderList = "";
+        for (Order order : orders) {
+            if (order instanceof SimpleOrder) {
+                if (Objects.equals(((SimpleOrder) order).getCustomerID(), customerID)) {
+                    orderList += (((SimpleOrder) order).toString()) + "\n" + "\n";
+                    orderList += "********************************************\n\n";
+                }
+            }
+            else if (order instanceof CompoundOrder) {
+                if (Objects.equals(((CompoundOrder) order).getOrders().elementAt(0).getCustomerID(), customerID)) {
+                    orderList += (((CompoundOrder) order).toString()) + "\n" + "\n";
+                    orderList += "********************************************\n\n";
+                }
+            }
+        }
+        return orderList;
+    }
+
 }
