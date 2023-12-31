@@ -2,7 +2,9 @@ package com.OrdersandNotificationsManager.OrdersandNotificationsManager.Controll
 
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.Config.Security.UserPrincipal;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.CompoundOrder;
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Customer;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.SimpleOrder;
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.CustomerModel.CustomerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +23,10 @@ public class OrderController {
     }
 
     @PostMapping(path="/placeOrder")
-    public SimpleOrder placeOrder(@RequestBody SimpleOrder order,
-                            @AuthenticationPrincipal UserPrincipal user) throws Exception {
+    public Customer placeOrder(@RequestBody SimpleOrder order,
+                               @AuthenticationPrincipal UserPrincipal user) throws Exception {
         order.setCustomerID(user.getUserID());
-        simpleOrder.placeOrder(order);
-        return order;
+        return simpleOrder.placeOrder(order);
     }
     @DeleteMapping(path="/shipOrder/{ID}")
     public void ship(@PathVariable String ID) {

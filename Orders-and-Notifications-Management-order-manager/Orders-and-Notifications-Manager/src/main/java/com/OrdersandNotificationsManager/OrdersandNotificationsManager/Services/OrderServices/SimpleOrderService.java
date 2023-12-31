@@ -1,4 +1,5 @@
 package com.OrdersandNotificationsManager.OrdersandNotificationsManager.Services.OrderServices;
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Customer;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Order;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Product;
 import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.SimpleOrder;
@@ -21,7 +22,8 @@ public class SimpleOrderService extends OrderService{
         this.customerModel = customerModel ;
     }
 
-    public void placeOrder(SimpleOrder order) throws Exception {
+    // test
+    public Customer placeOrder(SimpleOrder order) throws Exception {
         if(orderLog.read(order.getID())!=null)
             throw new Exception("order already exists") ;
         else {
@@ -29,8 +31,8 @@ public class SimpleOrderService extends OrderService{
             for(Product product: order.getCart().getProducts()){
                 stockManagerService.decrementAmount(product.getSeriaolNum(), product.getAmount());
             }
-            customerModel.deduceBalance(order.getCustomerID().toString(),order.getOrderPrice()+ order.getShipmentFees());
-
+            customerModel.deduceBalance(order.getCustomerID().toString(),order.getOrderPrice() + order.getShipmentFees());
+            return customerModel.read(order.getCustomerID());
         }
     }
 

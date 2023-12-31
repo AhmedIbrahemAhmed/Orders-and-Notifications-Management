@@ -7,16 +7,19 @@ public class Customer {
     Integer balance;
     String email;
     String address;
+    String phoneNumber;
+
 
     public Customer(String userName, String password,
                     Long ID, Integer balance,
-                    String email, String address) {
+                    String email, String address, String phoneNumber) {
         this.userName = userName;
         this.password = password;
         this.ID = ID;
         this.balance = balance;
         this.email = email;
         this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUserName() {
@@ -65,5 +68,13 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

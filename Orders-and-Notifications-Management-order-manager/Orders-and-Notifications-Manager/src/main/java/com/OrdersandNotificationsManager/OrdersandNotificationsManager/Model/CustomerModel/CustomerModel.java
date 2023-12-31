@@ -24,7 +24,7 @@ public class CustomerModel {
         customers.add(customer);
     }
 
-    public void delete(String ID) {
+    public void delete(Long ID) {
         for (Customer customer : customers) {
             if (Objects.equals(customer.getID(), ID)){
                 customers.remove(customer);
@@ -33,7 +33,7 @@ public class CustomerModel {
         }
     }
 
-    public Customer read(String ID) {
+    public Customer read(Long ID) {
         Customer target = null;
         for (Customer customer : customers) {
             if (Objects.equals(customer.getID(), ID)){
