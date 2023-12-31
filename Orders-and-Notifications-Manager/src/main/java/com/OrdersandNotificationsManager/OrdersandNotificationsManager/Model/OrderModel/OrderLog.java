@@ -1,6 +1,6 @@
 package com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.OrderModel;
 
-import com.OrdersandNotificationsManager.OrdersandNotificationsManager.Order.Order;
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
