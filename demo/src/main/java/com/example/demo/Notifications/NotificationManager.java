@@ -31,10 +31,9 @@ public class NotificationManager {
     }
     @Scheduled(fixedRate = 30000)
     public void send(){
-        if(messageDB.isEmpty()){
+        if(!(messageDB.isEmpty())){
             Message message= messageDB.pop();
             messageHistory.save(message);
-
             //rest of the sending code
         }
 
