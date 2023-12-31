@@ -11,10 +11,10 @@ public class SimpleOrder extends Order {
     protected double shipmentFees ;
     protected Cart cart = null ;
     protected String shipmentAddress ;
-    protected String customerID ;
+    protected Long customerID ;
 
 @Autowired
-    public SimpleOrder(String ID, double productPrice, double shipmentFees, Cart cart, String shipmentAddress, String customerID) {
+    public SimpleOrder(String ID, double productPrice, double shipmentFees, Cart cart, String shipmentAddress, Long customerID) {
         this.ID = ID;
         this.productPrice = productPrice;
         this.shipmentFees = shipmentFees;
@@ -57,11 +57,11 @@ public class SimpleOrder extends Order {
         this.shipmentAddress = shipmentAddress;
     }
 
-    public String getCustomerID() {
+    public Long getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(String customerID) {
+    public void setCustomerID(Long customerID) {
         this.customerID = customerID;
     }
 
@@ -73,7 +73,7 @@ public class SimpleOrder extends Order {
                 ", shipmentFees=" + shipmentFees +
                 ", cart=" + cart +
                 ", shipmentAddress='" + shipmentAddress + '\'' +
-                ", customerID='" + customerID + '\'' +
+                ", customerID='" + customerID.toString()+ '\'' +
                 '}';
     }
 }
