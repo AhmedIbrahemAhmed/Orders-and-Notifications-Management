@@ -18,7 +18,7 @@ public class MessageHistory implements HistoryRepositry{
 
     @Override
     public String mostNotifiedEmail() {
-        
+        return null;
     }
 
     @Override
@@ -28,6 +28,18 @@ public class MessageHistory implements HistoryRepositry{
 
     @Override
     public String mostSentNotificationTemplate() {
-        return null;
+        int template1=0,template2=0;
+        for(int i=0;i<messages.size();i++){
+            if(messages.elementAt(i) instanceof Template1){
+                template1++;
+            }
+            else if(messages.elementAt(i) instanceof Template2) {
+                template2++;
+            }
+        }
+        if(template1>=template2){
+            return "Template1";
+        }
+        else return "Template2";
     }
 }
