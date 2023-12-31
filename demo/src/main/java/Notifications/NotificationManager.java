@@ -10,10 +10,12 @@ import java.util.List;
 @Service
 public class NotificationManager {
     private final MessageDB messageDB;
+    private final MessageHistory messageHistory;
 
     @Autowired
-    public NotificationManager(MessageDB messageDB){
+    public NotificationManager(MessageDB messageDB,MessageHistory messageHistory){
     this.messageDB = messageDB;
+    this.messageHistory=messageHistory;
     }
 
     public void insert(Message message){
@@ -31,8 +33,10 @@ public class NotificationManager {
     public void send(){
         if(messageDB.isEmpty()){
             Message message= messageDB.pop();
+            messageHistory.save(message);
             //rest of the sending code
         }
+
     }
 
 }
