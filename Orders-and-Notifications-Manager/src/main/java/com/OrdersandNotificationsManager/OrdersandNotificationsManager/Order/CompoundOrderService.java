@@ -4,7 +4,7 @@ import  com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.Or
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompoundOrderService {
+public class CompoundOrderService extends OrderService{
     protected OrderLog orderLog ;
 
     public CompoundOrderService(OrderLog orderLog) {
@@ -21,21 +21,31 @@ public class CompoundOrderService {
         }
     }
 
-    public void ship(CompoundOrder order) {
-        orderLog.delete(order.getID());
-        for(Order order1:order.getOrders())
-            orderLog.delete(order1.getID());
+    public void ship(String ID) {
+        Order order =  orderLog.read(ID);
+        orderLog.delete(ID);
+        if(order instanceof CompoundOrder order2) {
+            for (Order order1 : order2.getOrders())
+                orderLog.delete(order1.getID());
+        }
     }
 
-    public void cancel(CompoundOrder order) {
-        orderLog.delete(order.getID());
-        for(Order order1:order.getOrders())
-            orderLog.delete(order1.getID());
+    public void cancel(String ID) {
+        Order order =  orderLog.read(ID);
+        orderLog.delete(ID);
+
+        if(order instanceof CompoundOrder order2) {
+            for (Order order1 : order2.getOrders())
+                orderLog.delete(order1.getID());
+        }
     }
 
-    public void cancelShipment(CompoundOrder order) {
-        orderLog.delete(order.getID());
-        for(Order order1:order.getOrders())
-            orderLog.delete(order1.getID());
+    public void cancelShipment(String ID) {
+        Order order =  orderLog.read(ID);
+        orderLog.delete(ID);
+        if(order instanceof CompoundOrder order2) {
+            for (Order order1 : order2.getOrders())
+                orderLog.delete(order1.getID());
+        }
     }
 }

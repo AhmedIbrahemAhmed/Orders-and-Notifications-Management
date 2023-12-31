@@ -4,7 +4,7 @@ import  com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.Or
 import org.springframework.stereotype.Service;
 
 @Service
-public class SimpleOrderService {
+public class SimpleOrderService extends OrderService{
     protected OrderLog orderLog ;
 
     public SimpleOrderService(OrderLog orderLog) {
@@ -19,15 +19,15 @@ public class SimpleOrderService {
         }
     }
 
-    public void ship(Order order) {
-        orderLog.delete(order.getID());
+    public void ship(String ID) {
+        orderLog.delete(ID);
     }
 
-    public void cancel(Order order) {
-        orderLog.delete(order.getID());
+    public void cancel(String ID) {
+        orderLog.delete(ID);
     }
 
-    public void cancelShipment(Order order) {
-        orderLog.delete(order.getID());
+    public void cancelShipment(String ID) {
+        orderLog.delete(ID);
     }
 }
