@@ -1,0 +1,58 @@
+package com.OrdersandNotificationsManager.OrdersandNotificationsManager.Model.CustomerModel;
+
+import com.OrdersandNotificationsManager.OrdersandNotificationsManager.DTO.Customer;
+import org.springframework.stereotype.Component;
+
+import java.util.Objects;
+import java.util.Vector;
+
+@Component
+public class CustomerModel {
+    Vector<Customer> customers;
+
+   public CustomerModel() {
+        customers = new Vector<>();
+    }
+
+    public void create(Customer customer) {
+       if (customers.isEmpty() ) {
+           customer.setID(0L);
+       } else {
+           Long lastCustomerID = customers.getLast().getID();
+           customer.setID(lastCustomerID + 1);
+       }
+        customers.add(customer);
+    }
+
+    public void delete(String ID) {
+        for (Customer customer : customers) {
+            if (Objects.equals(customer.getID(), ID)){
+                customers.remove(customer);
+                break;
+            }
+        }
+    }
+
+    public Customer read(String ID) {
+        Customer target = null;
+        for (Customer customer : customers) {
+            if (Objects.equals(customer.getID(), ID)){
+                target = customer;
+                break;
+            }
+        }
+        return target;
+    }
+
+    public Customer read(String email, String password) {
+        Customer target = null;
+        for (Customer customer : customers) {
+            if (Objects.equals(customer.getPassword(), password)
+            && Objects.equals(customer.getEmail(), email)){
+                target = customer;
+                break;
+            }
+        }
+        return target;
+    }
+}
